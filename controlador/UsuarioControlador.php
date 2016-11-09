@@ -16,14 +16,25 @@ class UsuarioControlador extends Controlador {
     }
     
     public function index(){
-        
-        $usuario = new Usuario($this->adapter);
-        
-        $allusers = $usuario->getTodos();
-       
-        $this->vista("Usuario::index",array("titulo" => "Lista Usuarios",
-            "allusers"=>$allusers
-        ));
+        $s = $this->getSesion();
+        $u = $s->getUsuario();
+        if($u->esAdministrador()){
+            $usuario = new Usuario($this->adapter);
+
+            $allusers = $usuario->getTodos();
+
+            $this->vista("Usuario::index",array("titulo" => "Lista Usuarios",
+                "allusers"=>$allusers
+            ));
+        }
+        else{
+            $error[0] = true;
+            $error['titulo'] = "Usuario sin privilegios!";
+            $error[] = "Lo sentimos pero solo pueden acceder administradores";
+            $this->vista("Principal::error",array("titulo" => "Error!",
+                "error"=>$error
+            ));
+        }
     }
     
     public function nuevo(){    
