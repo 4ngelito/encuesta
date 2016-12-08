@@ -17,7 +17,13 @@ class PrincipalControlador extends Controlador {
     }
     
     public function index(){
-        $this->vista("Principal::index",array("titulo"=>"Bienvenido"));
+        $s = $this->getSesion();
+        if($s != null){
+            $this->vista("Principal::index", array("titulo"=>"Bienvenido"));
+        }
+        else{
+            $this->vista ("Principal::login", array("titulo"=>"Bienvenido"));
+        }
     }
     
     public function login(){

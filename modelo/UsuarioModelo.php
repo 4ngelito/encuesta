@@ -26,4 +26,10 @@ class UsuarioModelo extends Modelo {
         $result = $this->ejecutarSql($query);
         return $result;
     }
+    
+    public function getTodosId(){
+        $query = "SELECT id FROM usuarios";
+        $result = $this->ejecutarSql($query);
+        return $result;
+    }
 }

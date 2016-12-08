@@ -29,7 +29,9 @@ class Controlador {
             $this->setSesion($s);
         }
         else{
-            if(!(strpos(strtoupper(get_class($this)), strtoupper(CONTROLADOR_DEFECTO)) !== false)) $this->redirecciona();
+            if(!(strpos(strtoupper(get_class($this)), strtoupper(CONTROLADOR_DEFECTO)) !== false)){ 
+                $this->redirecciona(); 
+            }
         }
         unset($con);
     }

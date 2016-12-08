@@ -133,7 +133,10 @@ class UsuarioControlador extends Controlador {
             $id=(int)$_GET["id"];
             
             $usuario=new Usuario($this->adapter);
-            $usuario->borraPorId($id); 
+            $usuario->borraPorId($id);
+            
+            $encuestas = new EncuestaModelo($this->adapter);
+            $encuestas->borraPor("id_usuario", $id);
         }
         $this->redirecciona('Usuario');
     }
